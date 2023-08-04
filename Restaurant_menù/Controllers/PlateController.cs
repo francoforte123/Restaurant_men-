@@ -19,11 +19,28 @@ namespace Restaurant_menù.Controllers
 
 
         // GET: api/<PlateController>
-        /*[HttpGet]
-        public IEnumerable<Plate> GetAll()          //via a guardare la scheda "PlateRepository" per vedere il pezzo di codice inerente 
+        [HttpGet]
+        public IEnumerable<Plate> GetAll()          
         {
            return this.plateRepository.GetAllPlate();
-        }*/
+        }
+
+
+        [HttpGet]
+        [Route("GetTypePlate")]
+        public IEnumerable<Plate> GetTypePlate(string type)
+        {
+            return this.plateRepository.GetByType(type);
+        }
+
+
+        [HttpGet]
+        [Route("GetPlateDownOfTenPrice")]
+        public IEnumerable<Plate> GetByPrice()
+        {
+            return this.plateRepository.GetPlateByPrice();
+        }
+
 
         // GET api/<PlateController>/5
         [HttpGet("{id}")]

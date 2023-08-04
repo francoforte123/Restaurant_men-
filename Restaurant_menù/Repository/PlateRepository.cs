@@ -42,20 +42,21 @@ namespace Restaurant_menù.Repository
             this.plates.Add(plate);
         }
 
-        /*public IEnumerable<Plate> GetAllPlate()     //mi da problemi
+        public IEnumerable<Plate> GetAllPlate()     
         {
-            return this.GetAllPlate();
-        }*/
+            return plates;
+        }
 
         public IEnumerable<Plate> GetByType(string type)
         {
-            var typeOfPlates= from plate in plates where (x => 
+            var typeOfPlates = from plate in plates where plate.Type == type select plate;
             return typeOfPlates;
         }
 
-        public IEnumerable<Plate> GetPlateByPrice(double price)
+        public IEnumerable<Plate> GetPlateByPrice()
         {
-            throw new NotImplementedException();
+            var priceOfPlate = from plate in plates where plate.Price < 10 select plate;
+            return priceOfPlate;
         }
     }
 }
