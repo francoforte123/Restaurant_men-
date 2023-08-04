@@ -1,0 +1,32 @@
+[
+  {
+    "Name": "Carbonara",
+    "Type": 1,
+    "Price": 6.99
+  },
+  {
+    "Name": "Risotto alla Milanese",
+    "Type": 1,
+    "Price": 9.99
+  },
+  {
+    "Name": "Tiramis\u00F9",
+    "Type": 4,
+    "Price": 6.99
+  },
+  {
+    "Name": "Fette di pesce con contorno di verdura",
+    "Type": 3,
+    "Price": 6.99
+  },
+  {
+    "Name": "tthrwht",
+    "Type": 3,
+    "Price": 8654.78
+  },
+  {
+    "Name": "Piatto alla Norma",
+    "Type": 1,
+    "Price": 10
+  }
+]

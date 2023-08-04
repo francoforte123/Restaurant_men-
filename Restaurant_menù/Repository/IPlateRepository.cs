@@ -6,7 +6,7 @@ namespace Restaurant_menù.Repository
     {
         void CreatePLate(Plate plate);
         IEnumerable<Plate> GetAllPlate();
-        IEnumerable<Plate> GetByType(string type);
+        IEnumerable<Plate> GetByType(TypeOfPlate type);
         IEnumerable<Plate> GetPlateByPrice();
     }
 }

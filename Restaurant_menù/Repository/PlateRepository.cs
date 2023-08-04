@@ -1,62 +1,39 @@
 ﻿using Restaurant_menù.Model;
+using System.Collections.Generic;
+using System.Text.Json;
 
 namespace Restaurant_menù.Repository
 {
     public class PlateRepository : IPlateRepository
     {
-        private readonly List<Plate> plates;
-
-        public PlateRepository()
-        {
-            plates = new List<Plate>()
-            {
-                new Plate()
-                {
-                    Name= "Carbonara",
-                    Type= "Primo",
-                    Price= 6.99,
-                },
-                new Plate()
-                {
-                    Name= "Risotto alla Milanese",
-                    Type= "Primo",
-                    Price= 9.99,
-                },
-                new Plate()
-                {
-                    Name= "Tiramisù",
-                    Type= "Dolce",
-                    Price= 6.99,
-                },
-                new Plate()
-                {
-                    Name= "Fette di pesce con contorno di verdura",
-                    Type= "Contorno",
-                    Price= 6.99,
-                },
-            };
-        }
+        private readonly JsonSerializerOptions options= new JsonSerializerOptions{WriteIndented = true};
 
         public void CreatePLate(Plate plate)
         {
-            this.plates.Add(plate);
+            var plates= GetAllPlate().ToList();
+            plates.Add(plate);
+            File.WriteAllText("C:\\Users\\laduc\\OneDrive\\Desktop\\progetti_in_C#\\esercizi_C#\\Restaurant_menù\\Restaurant_menù\\File\\menù.json", JsonSerializer.Serialize(plates, options));
+
         }
 
         public IEnumerable<Plate> GetAllPlate()     
         {
-            return plates;
+            var getAll = File.ReadAllText("C:\\Users\\laduc\\OneDrive\\Desktop\\progetti_in_C#\\esercizi_C#\\Restaurant_menù\\Restaurant_menù\\File\\menù.json");
+            return JsonSerializer.Deserialize<List<Plate>>(getAll, options);
         }
 
-        public IEnumerable<Plate> GetByType(string type)
+        public IEnumerable<Plate> GetByType(TypeOfPlate type)
         {
-            var typeOfPlates = from plate in plates where plate.Type == type select plate;
+            var typeOfPlates = from plate in GetAllPlate() where plate.Type == type select plate;
             return typeOfPlates;
         }
 
         public IEnumerable<Plate> GetPlateByPrice()
         {
-            var priceOfPlate = from plate in plates where plate.Price < 10 select plate;
+            var priceOfPlate = from plate in GetAllPlate() where plate.Price < 10 select plate;
             return priceOfPlate;
         }
+
+        
     }
 }

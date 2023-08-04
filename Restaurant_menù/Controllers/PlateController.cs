@@ -28,7 +28,7 @@ namespace Restaurant_menù.Controllers
 
         [HttpGet]
         [Route("GetTypePlate")]
-        public IEnumerable<Plate> GetTypePlate(string type)
+        public IEnumerable<Plate> GetTypePlate(TypeOfPlate type)
         {
             return this.plateRepository.GetByType(type);
         }
